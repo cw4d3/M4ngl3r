@@ -45,7 +45,7 @@ def l33t_permutations(str)
     # map substitutable characters to matching positions in the str array
 
     results = [] # list of mangled results
-    sub_positions = [] # positions in the str array that can be mangled
+    @sub_positions = [] # positions in the str array that can be mangled
     original_str = str
     str = str.downcase.split("")
 
@@ -54,29 +54,35 @@ def l33t_permutations(str)
 
     #find array element positions eligible for substituion from str array ([0,2,6])
     hash_sub_chars.keys.each do |key|
-        sub_positions << str.each_index.select{|i| str[i] == key}
+        @sub_positions << str.each_index.select{|i| str[i] == key}
     end
-    sub_positions = sub_positions.flatten!.sort if sub_positions.count >= 1
+    @sub_positions = @sub_positions.flatten!.sort if @sub_positions.count >= 1
+    @repetitions = @sub_positions.count if @sub_positions.count >= 1
 
-    sub_positions.each do |m|
+	@sub_positions.each do |m|
         modified_str = original_str.split("")
-        
+
         # get the substitute char(s) out of the hash
         res = @l33t_list.detect {|k,v| k == str[m]}
 
         if res != nil && res[1].count <= 1
             modified_str[m] = res[1]
-            results.push modified_str.join("")
+            results.push modified_str.join("") unless @list.include? modified_str.join("")
         elsif res != nil && res[1].count > 1
             res[1].each do |lchar|
                 modified_str[m] = lchar
-                results.push modified_str.join("")
+                results.push modified_str.join("") unless @list.include? modified_str.join("")
             end
         end
     end
 
-    @list = @list.uniq + results
-
+    # recurse through the results to apply more l33tification
+    @repetitions.times {
+        results.each do |l|
+            l33t_permutations(l)
+        end
+    }
+    @list += results
 end
 
 case_permutations(@input)
