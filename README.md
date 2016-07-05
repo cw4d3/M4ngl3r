@@ -32,20 +32,19 @@ ruby m4ngl3r.rb -f wordlist.txt -a -s '1,1!,!@#' >> output.txt
 ```
 Or not:
 ```
-ruby m4ngl3r.rb --input pew --all
+ruby m4ngl3r.rb --input mangle --leet
 #=>
-  PEW
-  pEW
-  PeW
-  peW
-  PEw
-  pEw
-  Pew
-  pew
-  P3W
-  p3W
-  P3w
-  p3w
+m4ng13
+m4ng1e
+m4ngl3
+m@ng13
+m@ng1e
+m@ngl3
+mang13
+m4ngle
+m@ngle
+mang1e
+mangl3
 ```
 
 ## License
