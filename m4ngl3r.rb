@@ -81,7 +81,7 @@ if @options[:file] == nil && @options[:input] == nil
 end
 
 if @options[:case] == nil && @options[:leet] == nil && @options[:all] == nil
-	puts "Mangle type is required. (-c, -l, or -b)\n"
+	puts "Mangle type is required. (-c, -l, or -a)\n"
 	puts @options[:banner]
 	exit
 end
