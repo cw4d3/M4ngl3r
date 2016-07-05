@@ -47,7 +47,7 @@ optparse = OptionParser.new do |opts|
 	end
 
 	@options[:all] = nil
-	opts.on('-b', '--both', 'Choose this option to get all permutations (case + leet).') do
+	opts.on('-a', '--all', 'Choose this option to get all permutations (case + leet).') do
 		@options[:all] = true
 	end
 
